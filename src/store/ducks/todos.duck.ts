@@ -9,6 +9,7 @@ import api from 'services/api';
 
 import { RootState } from 'store';
 
+
 interface State {
   loading: boolean
   error: string | null
@@ -21,14 +22,15 @@ const initialState: State = {
   todos: []
 }
 
-
-
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
     getTodosStart(state: State) {
       state.loading = true
+    },
+    addNewTodo(state: State, action: PayloadAction<string>){
+
     },
     getTodosFailed(state: State, action: PayloadAction<string>) {
       state.loading = false
@@ -47,12 +49,6 @@ export const { getAllTodosSuccess, getTodosFailed, getTodosStart} = todoSlice.ac
 
 export default todoSlice.reducer;
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-
-
 export const getAllTodos = (): AppThunk => async (dispatch: Dispatch) => {
   try {
     dispatch(getTodosStart())
@@ -64,6 +60,45 @@ export const getAllTodos = (): AppThunk => async (dispatch: Dispatch) => {
   }
 }
 
+export const removeTodo = (id: number): AppThunk => async (dispatch: Dispatch) => {
+  try {
+    dispatch(getTodosStart())
+
+    const response = await api.delete(`/todos/${id}`);
+
+    if(response.status !== 200)
+      throw new Error("Ops..")
+
+    const responseAllTodos = await api.get<Todos[]>('/todos')
+    dispatch(getAllTodosSuccess(responseAllTodos.data))
+
+  } catch (err) {
+  dispatch(getTodosFailed(err.toString()))
+  }
+}
+
+export const addTodo = (title: string, description: string): AppThunk => async (dispatch: Dispatch) => {
+
+  try {
+    dispatch(getTodosStart())
+
+    const response = await api.post<Todos>('todos', {
+      title,description
+  })
+
+
+  if(response.status !== 201)
+    throw new Error("Ops..")
+
+
+  const responseAllTodos = await api.get<Todos[]>('/todos')
+    dispatch(getAllTodosSuccess(responseAllTodos.data));
+
+  } catch (err) {
+    dispatch(getTodosFailed(err.toString()))
+  }
+
+}
 
 /** Seletor de estado do store já tipado */
 export const selectExampleState = (state: RootState) => state.todoReducer;

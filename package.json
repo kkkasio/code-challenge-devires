@@ -7,7 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api:server": "json-server -p 4000 --watch db.json",
+    "api:server": "json-server -p 4000 -d 3000 --watch db.json",
     "lint:fix": "eslint --ext .ts,.tsx src/ --fix",
     "storybook": "start-storybook -p 6006 -s public --no-dll",
     "build-storybook": "build-storybook -s public --no-dll"
