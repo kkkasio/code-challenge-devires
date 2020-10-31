@@ -22,10 +22,18 @@ const TodoList: React.FC = () => {
   }, []);
   const handleDeleteTodo = useCallback(
     (id: number) => {
-      console.log('delete');
-      const remove = [...todos].filter((todo) => todo.id !== id);
+      setTodos([...todos].filter((todo) => todo.id !== id));
+    },
+    [todos]
+  );
 
-      setTodos(remove);
+  const toggleTodoCompleted = useCallback(
+    (id: number) => {
+      setTodos(
+        todos.map((item) =>
+          item.id === id ? { ...item, completed: !item.completed } : item
+        )
+      );
     },
     [todos]
   );
@@ -36,13 +44,17 @@ const TodoList: React.FC = () => {
         <S.Item
           key={todo.id.toString()}
           completed={todo.completed}
+          title={todo.completed ? 'cancel task' : 'confirm task'}
           // onClick={toggleCompleted(todo.id):void}
         >
           <div>
-            <p>{todo.title}</p>
+            <p onClick={() => toggleTodoCompleted(todo.id)}>{todo.title}</p>
             {!todo.completed && (
               <div>
-                <Close onClick={() => handleDeleteTodo(todo.id)} />
+                <Close
+                  title="Remove task"
+                  onClick={() => handleDeleteTodo(todo.id)}
+                />
               </div>
             )}
           </div>
