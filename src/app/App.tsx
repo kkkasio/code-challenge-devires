@@ -1,9 +1,10 @@
+import Todo from 'pages/Todo';
 import React from 'react';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello Code Challenge!</h1>
+      <Todo />
     </div>
   );
 }
