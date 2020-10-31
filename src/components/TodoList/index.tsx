@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Close } from '@styled-icons/material-outlined/Close';
 
 import api from 'services/api';
@@ -20,6 +20,16 @@ const TodoList: React.FC = () => {
       .then((response) => setTodos(response.data))
       .catch((response) => console.log(response.error));
   }, []);
+  const handleDeleteTodo = useCallback(
+    (id: number) => {
+      console.log('delete');
+      const remove = [...todos].filter((todo) => todo.id !== id);
+
+      setTodos(remove);
+    },
+    [todos]
+  );
+
   return (
     <S.Wraper>
       {todos.map((todo) => (
@@ -32,7 +42,7 @@ const TodoList: React.FC = () => {
             <p>{todo.title}</p>
             {!todo.completed && (
               <div>
-                <Close />
+                <Close onClick={() => handleDeleteTodo(todo.id)} />
               </div>
             )}
           </div>
