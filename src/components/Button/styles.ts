@@ -41,8 +41,17 @@ export const Wraper = styled.button<ButtonProps>`
     border: none;
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.xxsmall};
+    transition: all 1s ease-in;
     cursor: pointer;
     ${!!size && wrapperModifiers[size](theme)};
     ${!!icon && wrapperModifiers.withIcon(theme)};
+
+    &:hover {
+      background: linear-gradient(
+        10deg,
+        rgba(155, 0, 250, 1) 0%,
+        rgba(93, 12, 255, 1) 100%
+      );
+    }
   `}
 `;
