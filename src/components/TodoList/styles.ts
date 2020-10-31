@@ -1,6 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
-import { Todos } from '.';
+import { Todos } from './index';
 
 type TodosModifiers = Pick<Todos, 'completed'>;
 

@@ -24,11 +24,12 @@ const wrapperModifiers = {
 
 export const Wraper = styled.div<LoadingProps>`
   ${({ theme, size, color }) => css`
+    margin: 2rem auto;
     border: 8px solid ${theme.colors[color]};
-    border-left-color: #22a6b3;
+    border-left-color: #8f8f8f;
     border-radius: 50%;
 
     ${size && wrapperModifiers[size]}
-    animation: ${spin} 1s linear infinite;
+    animation: ${spin} 1.3s linear infinite;
   `};
 `;

@@ -2,9 +2,7 @@ import React from 'react';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
-
 import Container from 'components/Container/';
-
 import * as S from './styles';
 
 import TodoList from 'components/TodoList';
