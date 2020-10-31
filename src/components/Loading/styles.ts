@@ -25,8 +25,9 @@ const wrapperModifiers = {
 export const Wraper = styled.div<LoadingProps>`
   ${({ theme, size, color }) => css`
     border: 8px solid ${theme.colors[color]};
-    border-left-color: #22a6b3;
+    border-left-color: #8f8f8f;
     border-radius: 50%;
+    margin: 2rem auto;
 
     ${size && wrapperModifiers[size]}
     animation: ${spin} 1s linear infinite;
