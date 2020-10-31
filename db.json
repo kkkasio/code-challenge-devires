@@ -4,12 +4,14 @@
     {
       "id": 1,
       "title": "Regar plantas",
-      "description": "Regar todas menos o cacto"
+      "description": "Regar todas menos o cacto",
+      "completed": true
     },
     {
       "id": 2,
       "title": "Passar no code challenge",
-      "description": "Caprichar no código e passar no code challenge mais facil do planeta"
+      "description": "Caprichar no código e passar no code challenge mais facil do planeta",
+      "completed": false
     }
   ]
 }

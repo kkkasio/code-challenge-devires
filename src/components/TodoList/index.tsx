@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Close } from '@styled-icons/material-outlined/Close';
+
 import api from 'services/api';
 
 import * as S from './styles';
 
-interface Todos {
+export interface Todos {
   id: number;
   title: string;
   description: string;
+  completed: boolean;
 }
 
 const TodoList: React.FC = () => {
@@ -20,9 +23,21 @@ const TodoList: React.FC = () => {
   return (
     <S.Wraper>
       {todos.map((todo) => (
-        <li key={todo.id.toString()}>
-          {todo.title} <span>{todo.description}</span>
-        </li>
+        <S.Item
+          key={todo.id.toString()}
+          completed={todo.completed}
+          // onClick={toggleCompleted(todo.id):void}
+        >
+          <div>
+            <p>{todo.title}</p>
+            {!todo.completed && (
+              <div>
+                <Close />
+              </div>
+            )}
+          </div>
+          <span>{todo.description}</span>
+        </S.Item>
       ))}
     </S.Wraper>
   );
