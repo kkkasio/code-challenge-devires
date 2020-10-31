@@ -3,7 +3,7 @@ import { Close } from '@styled-icons/material-outlined/Close';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { getAllTodos } from 'store/ducks/todos.duck';
+import { getAllTodos, removeTodo } from 'store/ducks/todos.duck';
 
 import * as S from './styles';
 import Loading from 'components/Loading';
@@ -24,17 +24,12 @@ const TodoList: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleDeleteTodo = useCallback((id: number) => {
-    // setTodos([...todos].filter((todo) => todo.id !== id));
-  }, []);
-
-  const toggleTodoCompleted = useCallback((id: number) => {
-    /* setTodos(
-        todos.map((item) =>
-          item.id === id ? { ...item, completed: !item.completed } : item
-        )
-      ); */
-  }, []);
+  const handleDeleteTodo = useCallback(
+    (id: number) => {
+      dispatch(removeTodo(id));
+    },
+    [dispatch]
+  );
 
   return (
     <>
@@ -48,7 +43,7 @@ const TodoList: React.FC = () => {
             // onClick={toggleCompleted(todo.id):void}
           >
             <div>
-              <p onClick={() => toggleTodoCompleted(todo.id)}>{todo.title}</p>
+              <p>{todo.title}</p>
               {!todo.completed && (
                 <div>
                   <Close
