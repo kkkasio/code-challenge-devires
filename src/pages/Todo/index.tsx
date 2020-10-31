@@ -2,6 +2,8 @@ import React, { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from 'store/ducks/todos.duck';
 
+import { AddTask } from '@styled-icons/material-outlined/AddTask';
+
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Container from 'components/Container/';
@@ -42,7 +44,9 @@ const Todo: React.FC = () => {
                 onChange={(event) => setDescription(event.target.value)}
                 placeholder="Describe your todo action"
               />
-              <Button size="medium">Add Todo</Button>
+              <Button icon={<AddTask />} size="medium">
+                Add Todo
+              </Button>
             </form>
           </div>
 
