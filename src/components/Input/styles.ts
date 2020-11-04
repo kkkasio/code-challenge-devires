@@ -1,5 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components';
-
+// eslint-disable-next-line
 type WrapperProps = {
   isFocused: boolean;
   isFilled: boolean;

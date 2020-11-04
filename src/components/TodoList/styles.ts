@@ -2,6 +2,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 
 import { Todos } from './index';
 
+// eslint-disable-next-line
 type TodosModifiers = Pick<Todos, 'completed'>;
 
 const wrapperModifiers = {
